@@ -1,0 +1,47 @@
+#include <SoftwareSerial.h>
+SoftwareSerial bluetooth(2,3);
+
+#define led_verde 8
+#define led_amarelo 9
+#define led_vermelho 10
+
+void setup() {
+
+  Serial.begin(9600);
+  bluetooth.begin(9600);
+
+  pinMode(led_verde, OUTPUT);
+  pinMode(led_amarelo, OUTPUT);
+  pinMode(led_vermelho, OUTPUT);
+  
+}
+
+void loop() {
+
+  switch(bluetooth.read()){
+
+    case 'a':
+      digitalWrite(led_verde, HIGH);
+      break;
+      
+    case 'b':
+      digitalWrite(led_verde, LOW);
+      break;
+      
+    case 'c':
+      digitalWrite(led_amarelo, HIGH);
+      break;
+      
+    case 'd':
+      digitalWrite(led_amarelo, LOW);
+      break;
+      
+    case 'e':
+      digitalWrite(led_vermelho, HIGH);
+      break;
+      
+    case 'f':
+      digitalWrite(led_vermelho, LOW);
+      break;
+  }
+}
