@@ -1,0 +1,61 @@
+//terminal HC-05
+#include <SoftwareSerial.h>
+SoftwareSerial bluetooth(2,3); //RX, TX
+
+//leds
+#define led_verde 8
+#define led_amarelo 9
+#define led_vermelho 10
+
+//botoes
+#define botao_verde 11
+#define botao_amarelo 12
+#define botao_vermelho 13
+
+void setup() {
+  
+  Serial.begin(9600);
+  bluetooth.begin(9600);
+
+  pinMode(led_verde, OUTPUT);
+  pinMode(led_amarelo, OUTPUT);
+  pinMode(led_vermelho, OUTPUT);
+
+  pinMode(botao_verde, INPUT);
+  pinMode(botao_amarelo, INPUT);
+  pinMode(botao_vermelho, INPUT);
+
+}
+
+void loop() {
+
+  //ligação do led verde
+  if(digitalRead(botao_verde)==1){
+    digitalWrite(led_verde, HIGH);
+    bluetooth.write('a');
+  }
+  else{
+    digitalWrite(led_verde, LOW);
+    bluetooth.write('b');
+  }
+
+  //ligação do led amarelo
+  if(digitalRead(botao_amarelo)==1){
+    digitalWrite(led_amarelo, HIGH);
+    bluetooth.write('c');
+  }
+  else{
+    digitalWrite(led_amarelo, LOW);
+    bluetooth.write('d');
+  }
+
+  //ligação do led vermelho
+  if(digitalRead(botao_vermelho)==1){
+    digitalWrite(led_vermelho, HIGH);
+    bluetooth.write('e');
+  }
+  else{
+    digitalWrite(led_vermelho, LOW);
+    bluetooth.write('f');
+  }
+}
